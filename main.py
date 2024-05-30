@@ -29,7 +29,7 @@ kinds.pop(0)
 print("メニュー展開")
 for kind in kinds:
     kind.click()
-    time.sleep(0.5)
+    time.sleep(3)
 html = driver.page_source.encode('utf-8')
 
 print("html取得")
