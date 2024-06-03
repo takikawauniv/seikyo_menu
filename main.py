@@ -1,6 +1,7 @@
 import time
 import json
 import xml.etree.ElementTree
+import random
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -29,7 +30,7 @@ kinds.pop(0)
 print("メニュー展開")
 for kind in kinds:
     kind.click()
-    time.sleep(3)
+    time.sleep(0.5)
 html = driver.page_source.encode('utf-8')
 
 print("html取得")
@@ -49,6 +50,19 @@ for catMenu in catMenus:
     dict[names[0].get_text().split("　")[0]] = sub_dict
     names.pop(0)
 
-with open("seikyo.json", mode="w", encoding="utf-8") as f:
+with open("./output/seikyo.json", mode="w", encoding="utf-8") as f:
     json.dump(dict, f, ensure_ascii=False, indent=4, separators=(',', ': '))
 print("完了")
+
+output = {}
+json_open = open('seikyo.json', 'r')
+seikyo_json = json.load(json_open)
+for v in seikyo_json.values():
+    if(len(v) != 0):
+        i = random.choice(list(v.keys()))
+        print(f"{i},{v[i]}")
+        output[i] = v[i]
+
+
+with open("./output/output.json", mode="w", encoding="utf-8") as f:
+    json.dump(output, f, ensure_ascii=False, indent=4, separators=(',', ': '))
