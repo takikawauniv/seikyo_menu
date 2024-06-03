@@ -2,6 +2,7 @@ import time
 import json
 import xml.etree.ElementTree
 import random
+import os
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -49,6 +50,8 @@ for catMenu in catMenus:
         sub_dict[meal] = int(price)
     dict[names[0].get_text().split("　")[0]] = sub_dict
     names.pop(0)
+
+os.makedirs("output", exist_ok=True)
 
 with open("./output/seikyo.json", mode="w", encoding="utf-8") as f:
     json.dump(dict, f, ensure_ascii=False, indent=4, separators=(',', ': '))
