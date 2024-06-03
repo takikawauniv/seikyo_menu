@@ -55,7 +55,7 @@ with open("./output/seikyo.json", mode="w", encoding="utf-8") as f:
 print("完了")
 
 output = {}
-json_open = open('seikyo.json', 'r')
+json_open = open('./output/seikyo.json', 'r')
 seikyo_json = json.load(json_open)
 for v in seikyo_json.values():
     if(len(v) != 0):
